@@ -1,5 +1,6 @@
-import os
+import sys
 
+py_ver = sys.version_info
 if py_ver.minor < 8 or py_ver.major < 3:
     msg = """
     Primality requires Python >= 3.8 to run
