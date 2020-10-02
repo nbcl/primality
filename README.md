@@ -1,6 +1,7 @@
 # Primality
 
 ![PyPI](https://img.shields.io/pypi/v/primality)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/primality)
 
 **Primality** helps you easily find, test and work with prime numbers in Python.
 
