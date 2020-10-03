@@ -38,7 +38,7 @@ def prange(n: int):
     """Returns a list in the form of [2, 3, ..., nth prime].
 
     Arguments:
-        {n} integer -- The lenght of the list.
+        {n} integer -- The length of the list.
 
     Raises:
         TypeError -- Wrong type for {n} parameter, must be integer.
@@ -89,3 +89,40 @@ def isprime(p: int):
     if p < 3:
         return False
     return miller.miller(p)
+
+
+def list_all_primes_within_range(m: int, n: int):
+    """ Returns list of primes within given range[m,n]
+
+    Arguments:
+        {m} integer -- The starting index of Range
+        {n} integer -- The Ending index of Range
+    Raises:
+        TypeError -- Wrong type for {m],{n} parameters, must be integer.
+        ValueError -- Wrong value for {m},{n} integers, must be positive or zero.
+
+    Returns:
+        List[integer] --list of primes within given range[m,n].
+    """
+    if not isinstance(m, int):
+        raise TypeError("list_all_primes_within_range() expect parameter m to be int. Given: "
+                        + str(type(m)) + '.')
+    if not isinstance(n, int):
+        raise TypeError("list_all_primes_within_range() expect parameter n to be int. Given: "
+                        + str(type(n)) + '.')
+    if m < 0:
+        raise ValueError("list_all_primes_within_range() int parameter m must be positive or zero.")
+    if n < 0:
+        raise ValueError("list_all_primes_within_range() int parameter n must be positive or zero.")
+
+    if m > n:
+        raise IndexError("list_all_primes_within_range() parameter n should be greater than or equal to m")
+
+    primes = []
+    if m <= 2:
+        primes.append(2)
+    for i in range(m, n+1):
+        if i % 2 != 0 and isprime(i):
+            primes.append(i)
+
+    return primes
