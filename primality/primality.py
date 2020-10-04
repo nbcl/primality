@@ -91,7 +91,7 @@ def isprime(p: int):
     return miller.miller(p)
 
 
-def list_all_primes_within_range(m: int, n: int):
+def between(m: int, n: int):
     """ Returns list of primes within given range[m,n]
 
     Arguments:
@@ -105,24 +105,22 @@ def list_all_primes_within_range(m: int, n: int):
         List[integer] --list of primes within given range[m,n].
     """
     if not isinstance(m, int):
-        raise TypeError("list_all_primes_within_range() expect parameter m to be int. Given: "
+        raise TypeError("between() expect parameter m to be int. Given: "
                         + str(type(m)) + '.')
     if not isinstance(n, int):
-        raise TypeError("list_all_primes_within_range() expect parameter n to be int. Given: "
+        raise TypeError("between() expect parameter n to be int. Given: "
                         + str(type(n)) + '.')
-    if m < 0:
-        raise ValueError("list_all_primes_within_range() int parameter m must be positive or zero.")
-    if n < 0:
-        raise ValueError("list_all_primes_within_range() int parameter n must be positive or zero.")
-
-    if m > n:
-        raise IndexError("list_all_primes_within_range() parameter n should be greater than or equal to m")
-
     primes = []
-    if m <= 2:
+    if m > n:
+        return primes
+    if m <= 2 <= n:
         primes.append(2)
-    for i in range(m, n+1):
-        if i % 2 != 0 and isprime(i):
-            primes.append(i)
-
+    number = m+1 if m % 2 == 0 else m
+    if number < 0:
+        number = 3
+    while number <= n:
+        if isprime(number):
+            primes.append(number)
+        number += 2
     return primes
+

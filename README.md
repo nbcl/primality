@@ -15,7 +15,7 @@ primality.nthprime(9999)
 primality.prange(10)
 >> [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 
-primality.list_all_primes_within_range(10,19)
+primality.between(10,19)
 >> [11, 13, 17, 19]
 ```
 
