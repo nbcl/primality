@@ -38,7 +38,7 @@ For usage documentation and examples, please check out our [wiki](/wiki) and [do
 
 ## Theory
 
-The current version uses the Miller primality test<sup>(1)</sup> with known strong pseudoprime bases<sup>(2)</sup> to provide deterministic testing for integers between 2 and 2^64 - 1<sup>(3)</sup>. For more details, please read [THEORY.md](THEORY.md)
+The current version uses the Miller primality test<sup>(1)</sup> with known strong pseudoprime bases<sup>(2)</sup> to provide deterministic testing for integers between 2 and 2^64 - 1<sup>(3)</sup>. For more details, please read [THEORY.md](theory/THEORY.md)
 
 1. Miller, G. (1976), "Riemann's Hypothesis and Tests for Primality", Journal of Computer and System Sciences.
 
