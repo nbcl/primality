@@ -17,7 +17,7 @@ def nthprime(nth: int):
     """
 
     if not isinstance(nth, int):
-        raise TypeError("nthprime() takes (1) int type parameter. Given: " 
+        raise TypeError("nthprime() takes (1) int type parameter. Given: "
     + str(type(nth)) + '.')
     if nth < 0:
         raise ValueError("nthprime() int parameter must be positive or zero.")
@@ -26,7 +26,7 @@ def nthprime(nth: int):
     prime_count = 1
     number = 5
     while True:
-        is_prime = miller.miller(number) 
+        is_prime = miller.miller(number)
         if is_prime:
             prime_count += 1
             if prime_count == nth:
@@ -49,7 +49,7 @@ def prange(n: int):
     """
 
     if not isinstance(n, int):
-        raise TypeError("prange() takes (1) int type parameter. Given: " 
+        raise TypeError("prange() takes (1) int type parameter. Given: "
     + str(type(n)) + '.')
     if n < 0:
         raise ValueError("prange() int parameter must be positive or zero.")
@@ -62,9 +62,9 @@ def prange(n: int):
         is_prime = miller.miller(number)
         if is_prime:
             primelist.append(number)
-            if len(primelist) == n: 
+            if len(primelist) == n:
                 return primelist
-        number += 2  
+        number += 2
 
 
 def isprime(p: int):
@@ -82,7 +82,7 @@ def isprime(p: int):
     """
 
     if not isinstance(p, int):
-        raise TypeError("isprime() takes (1) int type parameter. Given: " 
+        raise TypeError("isprime() takes (1) int type parameter. Given: "
     + str(type(p)) + '.')
     if p in (2,3):
         return True
@@ -123,4 +123,28 @@ def between(m: int, n: int):
             primes.append(number)
         number += 2
     return primes
+
+
+def nextprime(n: int):
+    """Returns the next prime number greater than n.
+
+    Arguments:
+        {n} integer -- Integer number
+
+    Raises:
+        TypeError -- Wrong type for {n} parameter, must be integer.
+
+    Returns:
+        integer -- The next prime number greater than n.
+    """
+    if not isinstance(n, int):
+        raise TypeError("nextprime() expect parameter n to be int. Given: " +
+                        str(type(n)) + '.')
+    if n < 2:
+        return 2
+    temp = n+1 if n % 2 == 0 else n+2
+    while 1:
+        if isprime(temp):
+            return temp
+        temp += 2
 
