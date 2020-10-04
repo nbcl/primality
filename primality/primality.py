@@ -38,7 +38,7 @@ def prange(n: int):
     """Returns a list in the form of [2, 3, ..., nth prime].
 
     Arguments:
-        {n} integer -- The lenght of the list.
+        {n} integer -- The length of the list.
 
     Raises:
         TypeError -- Wrong type for {n} parameter, must be integer.
@@ -89,3 +89,38 @@ def isprime(p: int):
     if p < 3:
         return False
     return miller.miller(p)
+
+
+def between(m: int, n: int):
+    """ Returns list of primes within given range[m,n]
+
+    Arguments:
+        {m} integer -- The starting index of Range
+        {n} integer -- The Ending index of Range
+    Raises:
+        TypeError -- Wrong type for {m],{n} parameters, must be integer.
+        ValueError -- Wrong value for {m},{n} integers, must be positive or zero.
+
+    Returns:
+        List[integer] --list of primes within given range[m,n].
+    """
+    if not isinstance(m, int):
+        raise TypeError("between() expect parameter m to be int. Given: "
+                        + str(type(m)) + '.')
+    if not isinstance(n, int):
+        raise TypeError("between() expect parameter n to be int. Given: "
+                        + str(type(n)) + '.')
+    primes = []
+    if m > n:
+        return primes
+    if m <= 2 <= n:
+        primes.append(2)
+    number = m+1 if m % 2 == 0 else m
+    if number < 0:
+        number = 3
+    while number <= n:
+        if isprime(number):
+            primes.append(number)
+        number += 2
+    return primes
+
