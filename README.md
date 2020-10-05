@@ -17,6 +17,9 @@ primality.prange(10)
 
 primality.between(10,19)
 >> [11, 13, 17, 19]
+
+primality.nextprime(3)
+>> 5
 ```
 
 ## Installation
