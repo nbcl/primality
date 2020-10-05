@@ -20,10 +20,13 @@ primality.between(10,19)
 
 primality.nextprime(3)
 >> 5
+<<<<<<< HEAD
 
 primality.nextprime(1000)
 >> 997
 
+=======
+>>>>>>> origin
 ```
 
 ## Installation

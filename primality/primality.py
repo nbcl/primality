@@ -148,6 +148,7 @@ def nextprime(n: int):
             return number
         number += 2
 
+<<<<<<< HEAD
 
 def prevprime(n: int):
     """Returns the previous prime number smaller than n.
@@ -178,3 +179,5 @@ def prevprime(n: int):
         number -= 2
 
 
+=======
+>>>>>>> origin
