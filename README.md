@@ -24,7 +24,6 @@ primality.nextprime(3)
 primality.prevprime(1000)
 >> 997
 
-=======
 ```
 
 ## Installation
