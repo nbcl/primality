@@ -20,6 +20,10 @@ primality.between(10,19)
 
 primality.nextprime(3)
 >> 5
+
+primality.prevprime(1000)
+>> 997
+
 ```
 
 ## Installation

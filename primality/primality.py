@@ -148,3 +148,32 @@ def nextprime(n: int):
             return number
         number += 2
 
+
+def prevprime(n: int):
+    """Returns the previous prime number smaller than n.
+    please notice: n must be larger than 2.
+
+    Arguments:
+        {n} integer -- Integer number
+
+    Raises:
+        TypeError -- Wrong type for {n} parameter, must be integer.
+        ValueError -- Wrong value for {n} parameter, must be larger than 2.
+
+    Returns:
+        integer -- The previous prime number smaller than n.
+    """
+    if not isinstance(n, int):
+        raise TypeError("prevprime() expect parameter n to be int. Given: " +
+                        str(type(n)) + '.')
+    if n < 3:
+        raise ValueError("prevprime() expect parameter n to be larger than 2. "
+                         "Given: " + str(n) + '.')
+    if n == 3:
+        return 2
+    number = n - 1 if n % 2 == 0 else n - 2
+    while True:
+        if isprime(number):
+            return number
+        number -= 2
+
