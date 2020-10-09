@@ -1,6 +1,6 @@
 ## Theory
 
-The current library uses the Miller primality test (1) with known strong pseudoprime bases (2) to provide deterministic testing for integers between 2 and 2^64 - 1. (3)
+The current library uses the Miller primality test (1) with known strong pseudoprime bases (2) to provide deterministic testing for integers between 2 and 2^64 - 1. whether a given number is likely to be prime.
 
 - (1) Miller, G. (1976), "Riemann's Hypothesis and Tests for Primality", Journal of Computer and System Sciences.
 
