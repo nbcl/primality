@@ -1,5 +1,8 @@
 import random
+import secrets
+
 from primality import miller
+from primality.random_strategy import RandomStrategy
 
 
 def nthprime(nth: int):
@@ -18,7 +21,7 @@ def nthprime(nth: int):
 
     if not isinstance(nth, int):
         raise TypeError("nthprime() takes (1) int type parameter. Given: "
-    + str(type(nth)) + '.')
+                        + str(type(nth)) + '.')
     if nth < 0:
         raise ValueError("nthprime() int parameter must be positive or zero.")
     if nth == 0 or nth == 1:
@@ -50,13 +53,13 @@ def prange(n: int):
 
     if not isinstance(n, int):
         raise TypeError("prange() takes (1) int type parameter. Given: "
-    + str(type(n)) + '.')
+                        + str(type(n)) + '.')
     if n < 0:
         raise ValueError("prange() int parameter must be positive or zero.")
-    lists = [[], [2], [2,3]]
+    lists = [[], [2], [2, 3]]
     if n in (0, 1, 2):
         return lists[n]
-    primelist = [2,3]
+    primelist = [2, 3]
     number = 5
     while True:
         is_prime = miller.miller(number)
@@ -83,8 +86,8 @@ def isprime(p: int):
 
     if not isinstance(p, int):
         raise TypeError("isprime() takes (1) int type parameter. Given: "
-    + str(type(p)) + '.')
-    if p in (2,3):
+                        + str(type(p)) + '.')
+    if p in (2, 3):
         return True
     if p < 3:
         return False
@@ -115,7 +118,7 @@ def between(m: int, n: int):
         return primes
     if m <= 2 <= n:
         primes.append(2)
-    number = m+1 if m % 2 == 0 else m
+    number = m + 1 if m % 2 == 0 else m
     if number < 0:
         number = 3
     while number <= n:
@@ -177,3 +180,17 @@ def prevprime(n: int):
             return number
         number -= 2
 
+
+def rand_prime(m: int, n: int, strategy: RandomStrategy = RandomStrategy.RANDOM_LIB):
+    found_primes = between(m, n)
+    if len(found_primes) == 0:
+        return -1
+
+    if strategy is RandomStrategy.RANDOM_LIB:
+        return random.choice(found_primes)
+    elif strategy is RandomStrategy.SECRETS_CHOICE:
+        return secrets.choice(found_primes)
+    elif strategy is RandomStrategy.SECRETS_RANDOM:
+        return secrets.SystemRandom().choice(found_primes)
+    else:
+        raise ValueError("Couldn't find the selected strategy")
