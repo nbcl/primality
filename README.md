@@ -6,10 +6,10 @@
 **Primality** helps you easily find, test and work with prime numbers in Python.
 
 ```python
-primality.isprime(516349073509121311)
+primality.is_prime(516349073509121311)
 >> True
 
-primality.nthprime(9999)
+primality.nth_prime(9999)
 >> 104729
 
 primality.prange(10)
@@ -18,11 +18,14 @@ primality.prange(10)
 primality.between(10,19)
 >> [11, 13, 17, 19]
 
-primality.nextprime(3)
+primality.next_prime(3)
 >> 5
 
-primality.prevprime(1000)
+primality.prev_prime(1000)
 >> 997
+
+primality.rand_prime(10, 50, RandomStrategy.RANDOM_LIB)
+>> 17
 
 ```
 
