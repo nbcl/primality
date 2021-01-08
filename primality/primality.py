@@ -182,6 +182,26 @@ def prevprime(n: int):
 
 
 def rand_prime(m: int, n: int, strategy: RandomStrategy = RandomStrategy.RANDOM_LIB):
+    """Returns a random prime number within given range[m,n]
+
+    Arguments:
+        {m} integer -- The starting index of Range
+        {n} integer -- The Ending index of Range
+
+    Raises:
+        TypeError -- Wrong type for {m],{n} parameters, must be integer.
+
+    Returns:
+        integer -- A random prime numbers between m and n.
+
+    """
+    if not isinstance(m, int):
+        raise TypeError("between() expect parameter m to be int. Given: "
+                        + str(type(m)) + '.')
+    if not isinstance(n, int):
+        raise TypeError("between() expect parameter n to be int. Given: "
+                        + str(type(n)) + '.')
+
     found_primes = between(m, n)
     if len(found_primes) == 0:
         return -1
