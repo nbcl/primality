@@ -7,11 +7,11 @@ from primality.random_strategy import RandomStrategy
 class PrimalityTests(unittest.TestCase):
 
     def test_correct_prime(self):
-        is_prime = primality.isprime(32424781)
+        is_prime = primality.is_prime(32424781)
         self.assertEqual(is_prime, True)
 
     def test_incorrect_prime(self):
-        not_prime = primality.isprime(32424581)
+        not_prime = primality.is_prime(32424581)
         self.assertEqual(not_prime, False)
 
     def test_between_center(self):
@@ -38,15 +38,15 @@ class PrimalityTests(unittest.TestCase):
         self.assertEqual(between_primes, test_result)
 
     def test_nth_prime(self):
-        millionth_prime = primality.nthprime(9999)
+        millionth_prime = primality.nth_prime(9999)
         self.assertEqual(millionth_prime, 104729)
 
     def test_next_prime(self):
-        next_prime = primality.nextprime(15485863)
+        next_prime = primality.next_prime(15485863)
         self.assertEqual(next_prime, 15485867)
 
     def test_previous_prime(self):
-        previous_prime = primality.prevprime(15485867)
+        previous_prime = primality.prev_prime(15485867)
         self.assertEqual(previous_prime, 15485863)
 
     def test_prange(self):
@@ -61,7 +61,7 @@ class PrimalityTests(unittest.TestCase):
         for i in range(10):
             for strategy in RandomStrategy:
                 random_prime = primality.rand_prime(lower_bound, upper_bound, strategy)
-                self.assertTrue(primality.isprime(random_prime))
+                self.assertTrue(primality.is_prime(random_prime))
                 self.assertGreater(random_prime, lower_bound)
                 self.assertLess(random_prime, upper_bound)
 
