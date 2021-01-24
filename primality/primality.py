@@ -183,7 +183,6 @@ def prev_prime(n: int):
 
 def rand_prime(m: int, n: int, strategy: RandomStrategy = RandomStrategy.RANDOM_LIB):
     """
-
     Arguments:
         {m} integer -- The Starting index of Range
         {n} integer -- The Ending index of Range
