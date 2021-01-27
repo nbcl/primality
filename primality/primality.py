@@ -1,8 +1,11 @@
 import random
+import secrets
+
 from primality import miller
+from primality.random_strategy import RandomStrategy
 
 
-def nthprime(nth: int):
+def nth_prime(nth: int):
     """Returns the nth prime, starting from n = 0, returning 2.
 
     Arguments:
@@ -17,17 +20,17 @@ def nthprime(nth: int):
     """
 
     if not isinstance(nth, int):
-        raise TypeError("nthprime() takes (1) int type parameter. Given: "
-    + str(type(nth)) + '.')
+        raise TypeError("nth_prime() takes (1) int type parameter. Given: "
+                        + str(type(nth)) + '.')
     if nth < 0:
-        raise ValueError("nthprime() int parameter must be positive or zero.")
+        raise ValueError("nth_prime() int parameter must be positive or zero.")
     if nth == 0 or nth == 1:
         return nth + 2
     prime_count = 1
     number = 5
     while True:
-        is_prime = miller.miller(number)
-        if is_prime:
+        is_prime_number = miller.miller(number)
+        if is_prime_number:
             prime_count += 1
             if prime_count == nth:
                 return number
@@ -50,24 +53,24 @@ def prange(n: int):
 
     if not isinstance(n, int):
         raise TypeError("prange() takes (1) int type parameter. Given: "
-    + str(type(n)) + '.')
+                        + str(type(n)) + '.')
     if n < 0:
         raise ValueError("prange() int parameter must be positive or zero.")
-    lists = [[], [2], [2,3]]
+    lists = [[], [2], [2, 3]]
     if n in (0, 1, 2):
         return lists[n]
-    primelist = [2,3]
+    prime_list = [2, 3]
     number = 5
     while True:
-        is_prime = miller.miller(number)
-        if is_prime:
-            primelist.append(number)
-            if len(primelist) == n:
-                return primelist
+        is_prime_number = miller.miller(number)
+        if is_prime_number:
+            prime_list.append(number)
+            if len(prime_list) == n:
+                return prime_list
         number += 2
 
 
-def isprime(p: int):
+def is_prime(p: int):
     """True if p is prime.
 
     Arguments:
@@ -82,9 +85,9 @@ def isprime(p: int):
     """
 
     if not isinstance(p, int):
-        raise TypeError("isprime() takes (1) int type parameter. Given: "
-    + str(type(p)) + '.')
-    if p in (2,3):
+        raise TypeError("is_prime() takes (1) int type parameter. Given: "
+                        + str(type(p)) + '.')
+    if p in (2, 3):
         return True
     if p < 3:
         return False
@@ -115,17 +118,17 @@ def between(m: int, n: int):
         return primes
     if m <= 2 <= n:
         primes.append(2)
-    number = m+1 if m % 2 == 0 else m
+    number = m + 1 if m % 2 == 0 else m
     if number < 0:
         number = 3
     while number <= n:
-        if isprime(number):
+        if is_prime(number):
             primes.append(number)
         number += 2
     return primes
 
 
-def nextprime(n: int):
+def next_prime(n: int):
     """Returns the next prime number greater than n.
 
     Arguments:
@@ -144,12 +147,12 @@ def nextprime(n: int):
         return 2
     number = n + 1 if n % 2 == 0 else n + 2
     while True:
-        if isprime(number):
+        if is_prime(number):
             return number
         number += 2
 
 
-def prevprime(n: int):
+def prev_prime(n: int):
     """Returns the previous prime number smaller than n.
     please notice: n must be larger than 2.
 
@@ -164,16 +167,46 @@ def prevprime(n: int):
         integer -- The previous prime number smaller than n.
     """
     if not isinstance(n, int):
-        raise TypeError("prevprime() expect parameter n to be int. Given: " +
+        raise TypeError("prev_prime() expect parameter n to be int. Given: " +
                         str(type(n)) + '.')
     if n < 3:
-        raise ValueError("prevprime() expect parameter n to be larger than 2. "
+        raise ValueError("prev_prime() expect parameter n to be larger than 2. "
                          "Given: " + str(n) + '.')
     if n == 3:
         return 2
     number = n - 1 if n % 2 == 0 else n - 2
     while True:
-        if isprime(number):
+        if is_prime(number):
             return number
         number -= 2
 
+
+def rand_prime(m: int, n: int, strategy: RandomStrategy = RandomStrategy.RANDOM_LIB):
+    """
+    Arguments:
+        {m} integer -- The Starting index of Range
+        {n} integer -- The Ending index of Range
+
+    Returns:
+        integer -- A random prime number between m and n.
+
+    """
+    if not isinstance(m, int):
+        raise TypeError("rand_prime() expect parameter m to be int. Given: "
+                        + str(type(m)) + '.')
+    if not isinstance(n, int):
+        raise TypeError("rand_prime() expect parameter n to be int. Given: "
+                        + str(type(n)) + '.')
+
+    found_primes = between(m, n)
+    if len(found_primes) == 0:
+        return -1
+
+    if strategy is RandomStrategy.RANDOM_LIB:
+        return random.choice(found_primes)
+    elif strategy is RandomStrategy.SECRETS_CHOICE:
+        return secrets.choice(found_primes)
+    elif strategy is RandomStrategy.SECRETS_RANDOM:
+        return secrets.SystemRandom().choice(found_primes)
+    else:
+        raise ValueError("Couldn't find the selected strategy")
