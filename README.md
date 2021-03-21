@@ -47,7 +47,7 @@ from primality import primality
 
 ## Documentation
 
-For usage documentation and examples, please check out our [wiki](/wiki) and [docs](docs).
+For usage documentation and examples, please check out our [wiki](https://github.com/nbcl/primality/wiki) and [docs](docs).
 
 ## Theory
 
