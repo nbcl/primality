@@ -21,7 +21,7 @@ def miller(p: int):
         x = pow(a, d, p)
         if x == p - 1 or x == 1: 
             continue
-        for __ in range(r - 1):
+        for _ in range(r - 1):
             x = pow(x, 2, p)
             if x == p - 1: 
                 break
