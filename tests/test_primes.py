@@ -65,6 +65,36 @@ class PrimalityTests(unittest.TestCase):
                 self.assertGreater(random_prime, lower_bound)
                 self.assertLess(random_prime, upper_bound)
 
+    def test_next_prime_after_operation_sum(self):
+        next_prime_after_sum = primality.next_prime_after_operation(10, 20, '+')
+        self.assertEqual(next_prime_after_sum, 31)
 
+    def test_next_prime_after_operation_subtraction(self):
+        next_prime_after_subtraction = primality.next_prime_after_operation(20, 10, '-')
+        self.assertEqual(next_prime_after_subtraction, 11)
+
+    def test_next_prime_after_operation_multiplication(self):
+        next_prime_after_multiplication = primality.next_prime_after_operation(10, 10, '*')
+        self.assertEqual(next_prime_after_multiplication, 101)
+
+    def test_next_prime_after_operation_division(self):
+        next_prime_after_division = primality.next_prime_after_operation(100, 10, '/')
+        self.assertEqual(next_prime_after_division, 11)
+
+    def test_prev_prime_before_operation_sum(self):
+        prev_prime_before_sum = primality.prev_prime_before_operation(10, 20, '+')
+        self.assertEqual(prev_prime_before_sum, 29)
+
+    def test_prev_prime_before_operation_subtraction(self):
+        prev_prime_before_subtraction = primality.prev_prime_before_operation(20, 10, '-')
+        self.assertEqual(prev_prime_before_subtraction, 7)
+
+    def test_prev_prime_before_operation_multiplication(self):
+        prev_prime_before_multiplication = primality.prev_prime_before_operation(10, 10, '*')
+        self.assertEqual(prev_prime_before_multiplication, 97)
+
+    def test_prev_prime_before_operation_division(self):
+        prev_prime_before_division = primality.prev_prime_before_operation(100, 10, '/')
+        self.assertEqual(prev_prime_before_division, 7)
 if __name__ == '__main__':
     unittest.main()
