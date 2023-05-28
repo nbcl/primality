@@ -210,3 +210,64 @@ def rand_prime(m: int, n: int, strategy: RandomStrategy = RandomStrategy.RANDOM_
         return secrets.SystemRandom().choice(found_primes)
     else:
         raise ValueError("Couldn't find the selected strategy")
+
+def next_prime_after_operation(n : int, m : int, operation : str):
+    """
+    Arguments:
+        {n} integer -- The Starting index of Range
+        {m} integer -- The Ending index of Range
+        {string} string -- The operation to be performed
+
+    Returns:
+        integer -- The next prime number after the sum of the operation
+    """
+    if not isinstance(n, int):
+        raise TypeError("next_prime_after_sum() expect parameter n to be int. Given: "
+                        + str(type(n)) + '.')
+    if not isinstance(m, int):
+        raise TypeError("next_prime_after_sum() expect parameter m to be int. Given: "
+                        + str(type(m)) + '.')
+    if not isinstance(operation, str):
+        raise TypeError("next_prime_after_sum() expect parameter string to be string. Given: "
+                        + str(type(operation)) + '.')
+    if operation == "+":
+        return next_prime(n + m)
+    elif operation == "-":
+        return next_prime(n - m)
+    elif operation == "*":
+        return next_prime(n * m)
+    elif operation == "/":
+        return next_prime(int(n / m))
+    else:
+        raise ValueError("Couldn't find the selected operation")
+
+
+def prev_prime_before_operation(n : int, m : int, operation : str):
+    """
+    Arguments:
+        {n} integer -- The Starting index of Range
+        {m} integer -- The Ending index of Range
+        {string} string -- The operation to be performed
+
+    Returns:
+        integer -- The previous prime number before the operation
+    """
+    if not isinstance(n, int):
+        raise TypeError("prev_prime_before_op() expect parameter n to be int. Given: "
+                        + str(type(n)) + '.')
+    if not isinstance(m, int):
+        raise TypeError("prev_prime_before_op() expect parameter m to be int. Given: "
+                        + str(type(m)) + '.')
+    if not isinstance(operation, str):
+        raise TypeError("prev_prime_before_op() expect parameter string to be string. Given: "
+                        + str(type(operation)) + '.')
+    if operation == "+":
+        return prev_prime(n + m)
+    elif operation == "-":
+        return prev_prime(n - m)
+    elif operation == "*":
+        return prev_prime(n * m)
+    elif operation == "/":
+        return prev_prime(int(n / m))
+    else:
+        raise ValueError("Couldn't find the selected operation")
